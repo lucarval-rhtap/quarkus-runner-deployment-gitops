@@ -1,0 +1,18 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata: 
+  labels: 
+    app.kubernetes.io/instance: quarkus-runner-deployment
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: quarkus-runner-deployment 
+  name: quarkus-runner-deployment
+spec:
+  port:
+    targetPort: 8081 
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: quarkus-runner-deployment
+    weight: 100 
